@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İslam.App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#0f6b4f;
+    --green-deep:#0a4d39;
+    --green-soft:#1a8c66;
+    --mint:#e7f4ee;
+    --gold:#c9a253;
+    --gold-soft:#e3c987;
+    --paper:#f6faf7;
+    --ink:#0c2a20;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    background:radial-gradient(125% 85% at 50% -8%, #ffffff 0%, var(--mint) 45%, #d3e9df 100%);
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;justify-content:center;
+    padding:0 20px 56px;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;
+    background-image:radial-gradient(circle at 50% 50%, transparent 6px, rgba(15,107,79,.05) 7px, transparent 8px);
+    background-size:46px 46px;pointer-events:none;z-index:0;
+  }
+  .wrap{
+    width:100%;max-width:430px;position:relative;z-index:1;
+    padding-top:52px;animation:rise .8s ease both;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+  /* header — shahada flag */
+  .crest{width:96px;height:auto;margin:0 auto 18px;display:grid;place-items:center;animation:sway 6s ease-in-out infinite}
+  @keyframes sway{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  .crest svg{width:100%;height:auto;filter:drop-shadow(0 14px 26px rgba(10,77,57,.3))}
+
+  h1{text-align:center;font-size:1.95rem;font-weight:700;letter-spacing:-.01em;color:var(--green-deep)}
+  .arabic{font-family:'Amiri',serif;text-align:center;color:var(--gold);font-size:1.3rem;margin-top:8px;line-height:1.6;direction:rtl}
+  .tag{text-align:center;color:rgba(12,42,32,.6);font-size:.92rem;margin-top:10px;line-height:1.5;max-width:300px;margin-inline:auto}
+
+  /* app cards */
+  .apps{margin-top:32px;display:flex;flex-direction:column;gap:14px}
+  .app{
+    padding:18px;border-radius:20px;background:#ffffff;
+    border:1px solid rgba(15,107,79,.14);
+    box-shadow:0 8px 24px -16px rgba(10,77,57,.4);
+    transition:.22s ease;
+  }
+  .app:hover{border-color:rgba(15,107,79,.3);box-shadow:0 12px 30px -16px rgba(10,77,57,.5)}
+  .app-head{display:flex;align-items:center;gap:14px}
+  .app-ic{
+    width:52px;height:52px;flex-shrink:0;border-radius:15px;display:grid;place-items:center;
+    background:linear-gradient(150deg,var(--green-soft),var(--green-deep));
+  }
+  .app-ic svg{width:26px;height:26px}
+  .app-ic.img{background:#fff;border:1px solid rgba(15,107,79,.14);overflow:hidden}
+  .app-ic.img img{width:100%;height:100%;object-fit:contain;padding:7px}
+  .app-info{flex:1;min-width:0}
+  .app-info b{font-size:1.08rem;font-weight:600;display:block;color:var(--green-deep)}
+  .app-info span{font-size:.8rem;color:rgba(12,42,32,.5)}
+  .soon{font-size:.68rem;color:var(--green);border:1px solid rgba(15,107,79,.35);padding:2px 8px;border-radius:999px;white-space:nowrap;background:var(--mint)}
+
+  /* store buttons — real logos, same colour */
+  .stores{display:flex;gap:9px;margin-top:14px}
+  .store{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+    padding:11px;border-radius:12px;text-decoration:none;
+    font-size:.82rem;font-weight:600;color:#fff;
+    background:var(--green);transition:.2s ease;
+  }
+  .store svg{width:18px;height:18px}
+  .store:hover{background:var(--green-deep);transform:translateY(-2px);box-shadow:0 10px 22px -10px rgba(15,107,79,.6)}
+  .store:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+  /* socials — original transparent logos */
+  .soc-invite{text-align:center;margin-top:14px;font-size:.92rem;font-weight:600;color:var(--green-deep)}
+  .socials{display:flex;justify-content:center;gap:22px;margin-top:14px;margin-bottom:6px}
+  .soc{display:grid;place-items:center;transition:transform .25s ease}
+  .soc svg{width:38px;height:38px;display:block}
+  .soc.tiktok{animation:bob 3.2s ease-in-out infinite}
+  .soc.insta{animation:bob 3.2s ease-in-out infinite .8s}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  .soc:hover{transform:scale(1.12)}
+  .soc:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:8px}
+
+  footer{text-align:center;margin-top:38px;color:rgba(12,42,32,.4);font-size:.8rem;line-height:1.7}
+  footer .dot{color:var(--gold)}
+  @media (prefers-reduced-motion:reduce){.crest,.soc{animation:none}.wrap{animation:none}}
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="crest">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bead" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1a8c66"/>
+            <stop offset="100%" stop-color="#0a4d39"/>
+          </linearGradient>
+        </defs>
+        <!-- ring of beads -->
+        <g fill="url(#bead)">
+          <circle cx="60" cy="22" r="9"/>
+          <circle cx="84" cy="30" r="9"/>
+          <circle cx="98" cy="52" r="9"/>
+          <circle cx="98" cy="78" r="9"/>
+          <circle cx="84" cy="100" r="9"/>
+          <circle cx="60" cy="108" r="9"/>
+          <circle cx="36" cy="100" r="9"/>
+          <circle cx="22" cy="78" r="9"/>
+          <circle cx="22" cy="52" r="9"/>
+          <circle cx="36" cy="30" r="9"/>
+        </g>
+        <!-- crescent at top -->
+        <path d="M60 8 a13 13 0 1 0 9 22 a10 10 0 1 1 -9 -22 Z" fill="#c9a253"/>
+      </svg>
+    </div>
+    <h1>İslam.App</h1>
+    <p class="arabic">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+    <p class="tag">Maneviyatınıza eşlik eden uygulamalar.</p>
+
+    <p class="soc-invite">Bizi takip etmeyi unutmayın 🤍</p>
+    <nav class="socials" aria-label="Sosyal medya">
+      <a class="soc tiktok" href="#" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.6 7.3a5.1 5.1 0 01-3.1-1 5.1 5.1 0 01-2-3.5h-3.3v13.6a2.6 2.6 0 11-1.9-2.5V10.5a5.9 5.9 0 105 5.8V9.4a8.4 8.4 0 005.3 1.8V7.3z" fill="#FE2C55"/>
+          <path d="M18.6 6.3a5.1 5.1 0 01-3.1-1 5.1 5.1 0 01-2-3.5H10.2v13.6a2.6 2.6 0 11-1.9-2.5V9.5a5.9 5.9 0 105 5.8V8.4a8.4 8.4 0 005.3 1.8V6.3z" fill="#25F4EE"/>
+          <path d="M19.1 6.8a5.1 5.1 0 01-3.1-1 5.1 5.1 0 01-2-3.5h-3.3v13.6a2.6 2.6 0 11-1.9-2.5V10a5.9 5.9 0 105 5.8V8.9a8.4 8.4 0 005.3 1.8V6.8z" fill="#000"/>
+        </svg>
+      </a>
+      <a class="soc insta" href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="ig" cx="30%" cy="107%" r="135%">
+            <stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/>
+            <stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/>
+            <stop offset="90%" stop-color="#285AEB"/></radialGradient></defs>
+          <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#ig)"/>
+          <circle cx="12" cy="12" r="4.3" fill="none" stroke="#fff" stroke-width="1.9"/>
+          <circle cx="17.2" cy="6.8" r="1.3" fill="#fff"/>
+        </svg>
+      </a>
+    </nav>
+
+    <section class="apps">
+
+      <!-- Zikirmatik -->
+      <article class="app">
+        <div class="app-head">
+          <div class="app-ic img"><img src="data:image/png;base64,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" alt="Zikirmatik"></div>
+          <div class="app-info"><b>Zikirmatik</b><span>Dijital zikir sayacı</span></div>
+        </div>
+        <div class="stores">
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.eraycaylak.zikirmatik" target="_blank" rel="noopener" aria-label="Zikirmatik Google Play">
+            <svg viewBox="0 0 24 24"><path d="M3.6 2.3a1 1 0 00-.6.9v17.6a1 1 0 00.6.9l9.8-9.7L3.6 2.3z" fill="#fff"/><path d="M16.8 8.4L5.5 1.9l8.9 8.8 2.4-2.3z" fill="#fff" opacity=".85"/><path d="M16.8 15.6l-2.4-2.3-8.9 8.8 11.3-6.5z" fill="#fff" opacity=".85"/><path d="M20.3 10.7l-3.5-2 2.6 2.5-2.6 2.5 3.5-2a1 1 0 000-1z" fill="#fff" opacity=".7"/></svg>
+            Google Play
+          </a>
+          <a class="store" href="https://apps.apple.com/tr/app/zikirmatik-zikir-sayac%C4%B1n/id6779787561?l=tr" target="_blank" rel="noopener" aria-label="Zikirmatik App Store">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M16 1c.1 1.3-.4 2.5-1.2 3.4-.8.9-2 1.6-3.2 1.5-.1-1.3.5-2.5 1.2-3.3C13.6 1.6 14.9 1 16 1zm3.8 16.3c-.6 1.4-1 2-1.8 3.2-1.1 1.7-2.7 3.8-4.6 3.8-1.7 0-2.1-1.1-4.4-1.1-2.3 0-2.8 1.1-4.4 1.1-1.9 0-3.4-1.9-4.5-3.6C-.7 18.1-1 13.5 1 11c1-1.7 2.7-2.8 4.5-2.8 1.9 0 3.1 1.1 4.6 1.1 1.5 0 2.4-1.1 4.6-1.1 1.6 0 3.3.9 4.5 2.4-3.9 2.2-3.3 7.8.6 8.7z"/></svg>
+            App Store
+          </a>
+        </div>
+      </article>
+
+      <!-- Tevekkül -->
+      <article class="app">
+        <div class="app-head">
+          <div class="app-ic"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <!-- open du'a hands -->
+            <path d="M16 14c-1 4-1.5 9-1 14 .3 3 2.5 6 6 7l3 1V20c0-2-1-4-3-5s-4-3-5-1z" fill="#e3c987"/>
+            <path d="M32 14c1 4 1.5 9 1 14-.3 3-2.5 6-6 7l-3 1V20c0-2 1-4 3-5s4-3 5-1z" fill="#f6faf7"/>
+            <path d="M24 16v20" stroke="#0a4d39" stroke-width="1.2" opacity=".4"/>
+            <!-- small light above -->
+            <circle cx="24" cy="9" r="2.5" fill="#c9a253"/>
+          </svg></div>
+          <div class="app-info"><b>Tevekkül</b><span>Yakında</span></div>
+          <span class="soon">Yakında</span>
+        </div>
+      </article>
+
+      <!-- Rüyalog -->
+      <article class="app">
+        <div class="app-head">
+          <div class="app-ic"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <!-- night crescent -->
+            <path d="M30 12a13 13 0 1 0 6 17 10.5 10.5 0 1 1-6-17z" fill="#f6faf7"/>
+            <!-- stars -->
+            <path d="M31 16l1 2.4 2.4 1-2.4 1-1 2.4-1-2.4-2.4-1 2.4-1z" fill="#c9a253"/>
+            <circle cx="34" cy="30" r="1.4" fill="#e3c987"/>
+            <circle cx="20" cy="34" r="1" fill="#e3c987"/>
+          </svg></div>
+          <div class="app-info"><b>Rüyalog</b><span>Yakında</span></div>
+          <span class="soon">Yakında</span>
+        </div>
+      </article>
+
+    </section>
+
+    <footer>
+      <span class="dot">۞</span> İslam.App<br>
+      © 2026 · Tüm hakları saklıdır
+    </footer>
+  </main>
+</body>
+</html>
